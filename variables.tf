@@ -16,6 +16,12 @@ variable "lifecycle_tags" {
   default     = {}
 }
 
+variable "log_format" {
+  type        = string
+  description = "(Optional) The fields to include in the flow log record, in the order in which they should appear."
+  default     = null
+}
+
 variable "force_destroy" {
   type        = bool
   description = "A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable"
@@ -26,6 +32,12 @@ variable "lifecycle_rule_enabled" {
   type        = bool
   description = "Enable lifecycle events on this bucket"
   default     = true
+}
+
+variable "max_aggregation_interval" {
+  type        = number
+  description = "The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Valid Values: 60 seconds (1 minute) or 600 seconds (10 minutes)."
+  default     = 600
 }
 
 variable "noncurrent_version_expiration_days" {

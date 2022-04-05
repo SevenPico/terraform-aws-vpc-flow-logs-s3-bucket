@@ -183,9 +183,11 @@ module "s3_log_storage_bucket" {
 }
 
 resource "aws_flow_log" "default" {
-  count                = module.this.enabled && var.flow_log_enabled ? 1 : 0
-  log_destination      = module.s3_log_storage_bucket.bucket_arn
-  log_destination_type = "s3"
-  traffic_type         = var.traffic_type
-  vpc_id               = var.vpc_id
+  count                    = module.this.enabled && var.flow_log_enabled ? 1 : 0
+  log_destination          = module.s3_log_storage_bucket.bucket_arn
+  log_destination_type     = "s3"
+  log_format               = var.log_format
+  max_aggregation_interval = var.max_aggregation_interval
+  traffic_type             = var.traffic_type
+  vpc_id                   = var.vpc_id
 }
