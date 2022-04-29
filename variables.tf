@@ -111,3 +111,21 @@ variable "bucket_notifications_prefix" {
   description = "Prefix filter. Used to manage object notifications"
   default     = ""
 }
+
+variable "access_log_bucket_name" {
+  type        = string
+  default     = ""
+  description = "Name of the S3 bucket where S3 access logs will be sent to"
+}
+
+variable "access_log_bucket_prefix" {
+  type        = string
+  default     = "logs/"
+  description = "Prefix to prepend to the current S3 bucket name, where S3 access logs will be sent to"
+}
+
+variable "versioning_enabled" {
+  type        = bool
+  description = "A state of versioning. Versioning is a means of keeping multiple variants of an object in the same bucket"
+  default     = true
+}

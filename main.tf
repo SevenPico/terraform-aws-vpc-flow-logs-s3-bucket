@@ -162,9 +162,10 @@ module "s3_log_storage_bucket" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.26.0"
 
+  context                            = module.this.context
   kms_master_key_arn                 = module.kms_key.alias_arn
   sse_algorithm                      = "aws:kms"
-  versioning_enabled                 = false
+  versioning_enabled                 = var.versioning_enabled
   expiration_days                    = var.expiration_days
   glacier_transition_days            = var.glacier_transition_days
   lifecycle_prefix                   = var.lifecycle_prefix
@@ -178,8 +179,8 @@ module "s3_log_storage_bucket" {
   bucket_notifications_enabled       = var.bucket_notifications_enabled
   bucket_notifications_type          = var.bucket_notifications_type
   bucket_notifications_prefix        = var.bucket_notifications_prefix
-
-  context = module.this.context
+  access_log_bucket_prefix           = (var.access_log_bucket_prefix == null) ? module.this.id : var.access_log_bucket_prefix
+  access_log_bucket_name             = var.access_log_bucket_name
 }
 
 resource "aws_flow_log" "default" {
