@@ -181,6 +181,7 @@ module "s3_log_storage_bucket" {
   bucket_notifications_prefix        = var.bucket_notifications_prefix
   access_log_bucket_prefix           = (var.access_log_bucket_prefix == null) ? module.this.id : var.access_log_bucket_prefix
   access_log_bucket_name             = var.access_log_bucket_name
+  versioning_mfa_delete_enabled      = var.versioning_mfa_delete_enabled
 }
 
 resource "aws_flow_log" "default" {

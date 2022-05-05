@@ -129,3 +129,9 @@ variable "versioning_enabled" {
   description = "A state of versioning. Versioning is a means of keeping multiple variants of an object in the same bucket"
   default     = true
 }
+
+variable "versioning_mfa_delete_enabled" {
+  type        = bool
+  description = "Require MFA for deletes."
+  default     = false
+}
